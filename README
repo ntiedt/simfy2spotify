@@ -8,7 +8,7 @@ Create bookmarklet in chrome:
 - Copy code of file bookmarklet.min.js in url field
 - Save
 
-Usage at Simfy website
+Usage at Simfy website:
 - Browse a Simfy playlist
 - Click bookmarklet
 - A layer with copied playlist appear
@@ -23,3 +23,7 @@ Usage at Simfy website
 - Click "Create new playlist"
 - Paste 
 - Done
+
+Wishlist:
+- Copy playlist into clipboard
+- Convert without the need of an additional website

@@ -1,0 +1,42 @@
+div.simfy-result {
+    margin: 20px 0;
+    width: auto; height: 80% !important;
+    overflow-y: auto;
+}
+div.simfy-result table {
+    border-collapse: collapse;
+    margin: 1em 0;
+    width: 100%;
+}
+div.simfy-result table td, div.simfy-result table th {
+    border: 1px solid #EEEEEE;
+    padding: 0.6em 10px;
+    text-align: left;
+    vertical-align: top;
+}
+div.simfy-result table td a {
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+    border-bottom: 2px solid white;
+    color: white; font-weight: bold; text-align: center;
+    background: #7CB621;
+}
+div.simfy-result table td a.notchecked {
+    background: grey;
+}
+div.simfy-result table td a.notfound {
+    background: red;
+}
+div.simfy-result table td a.found {
+    background: #7CB621;
+}
+.ui-dialog .ui-dialog-titlebar-close,
+.ui-dialog .ui-dialog-titlebar-reload{
+    height: 20px;
+    margin: 0;
+    padding: 1px;
+    width: 21px;
+    float: right; 
+    position: relative;    
+}

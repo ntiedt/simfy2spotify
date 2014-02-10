@@ -36,7 +36,7 @@ javascript:
       var cssbookmarklet = document.createElement('link');
       cssbookmarklet.type = 'text/css';
       cssbookmarklet.rel = 'stylesheet';
-      cssbookmarklet.href = 'https://raw.github.com/ntiedt/simfy2spotify/master/simfy2spotify.css?timestamp='+timestamp;
+      cssbookmarklet.href = 'http://ntiedt.github.io/simfy2spotify/simfy2spotify.css?timestamp='+timestamp;
       document.getElementsByTagName('head')[0].appendChild(cssbookmarklet); 
     }
     function initsimfy2spotify() {

@@ -50,7 +50,7 @@ javascript:
         if(playlist_title.lastIndexOf(' - ')!=-1){
           album = playlist_title.slice(playlist_title.lastIndexOf(' - ')+3);
         }else{
-          album = 'Error';
+          album = '';
         }
         $.each($('.tracks .track'), function (nr) {
           artist_name = $('.artist_name a', this).attr('title');

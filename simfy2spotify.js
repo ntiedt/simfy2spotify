@@ -50,7 +50,7 @@ javascript:
         if(playlist_title.lastIndexOf(' - ')!=-1){
           album = playlist_title.slice(playlist_title.lastIndexOf(' - ')+3);
         }else{
-          album = '';
+          album = 'Error';
         }
         $.each($('.tracks .track'), function (nr) {
           artist_name = $('.artist_name a', this).attr('title');
@@ -101,11 +101,11 @@ javascript:
           var cur_row = $('#'+cur_a.data('row'));
           
 //           http://ws.spotify.com/search/1/track.json?q=track:%22Rolling%20In%20The%20Deep%22+AND+artist:%22adele%22+AND+album:%2221%22
-          var url = 'http://ws.spotify.com/search/1/track.json?q=';
           var album = cur_row.find('.album input').val().replace(/\s/gi,'+');
           var artist_name = cur_row.find('.artist_name input').val().replace(/\s/gi,'+');
           var track_title = cur_row.find('.track_title input').val().replace(/\s/gi,'+');
-          $.getJSON( url+'track:'+track_title+'+AND+artist:'+artist_name+'+AND+album:'+album, function( json ) {
+          var url = (album=='Error')?'http://ws.spotify.com/search/1/track.json?q=track:'+track_title+'+AND+artist:'+artist_name:'http://ws.spotify.com/search/1/track.json?q=track:'+track_title+'+AND+artist:'+artist_name+'+AND+album:'+album;
+          $.getJSON( url, function( json ) {
             var num_results = json.info.num_results;
             var langresults = 0;
             var resultkey = 0;

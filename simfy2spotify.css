@@ -1,42 +1,82 @@
 div.simfy-result {
-    margin: 20px 0;
-    width: auto; height: 80% !important;
-    overflow-y: auto;
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  width: auto; max-width: 80%; max-height: 80%;
+  margin: 20px 0; padding: 1em;
+  overflow-y: auto;
+  background: none repeat scroll 0 0 rgba(180, 180, 180, 0.95);
+  border: 1px solid rgb(60, 60, 60);
 }
 div.simfy-result table {
-    border-collapse: collapse;
-    margin: 1em 0;
-    width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1em 0;
+  width: 100%;
+}
+div.simfy-result table tbody #row_0 td{
+  padding-top: 1em;
 }
 div.simfy-result table td, div.simfy-result table th {
-    border: 1px solid #EEEEEE;
-    padding: 0.6em 10px;
-    text-align: left;
-    vertical-align: top;
+  padding: 0.3em 5px;
+  text-align: left;
+  vertical-align: top;
 }
 div.simfy-result table td a {
-    display: block;
-    padding: 5px;
-    border-radius: 5px;
-    border-bottom: 2px solid white;
-    color: white; font-weight: bold; text-align: center;
-    background: #7CB621;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: white; font-weight: bold; text-align: center;
+  background: #7CB621;
+}
+div.simfy-result a.spot-track,
+div.simfy-result a.spot-tracks,
+div.simfy-result .spotify a {
+  /*border: 1px solid black;*/
+}
+div.simfy-result .spotify a {
+  margin: 0 2px;
+}
+div.simfy-result .spotify a:first-child {
+  margin-left: 0;
+}
+div.simfy-result .spotify a:last-child {
+  margin-right: 0;
 }
 div.simfy-result table td a.notchecked {
-    background: grey;
+  background: grey;
 }
 div.simfy-result table td a.notfound {
-    background: red;
+  background: red;
 }
 div.simfy-result table td a.found {
-    background: #7CB621;
+  background: #7CB621;
+}
+div.simfy-result table td a.toomuch {
+  background: orange;
+  display: inline-block;
+}
+div.simfy-result table td a.build-playlist {
+  display: block;
+  margin-top: 0.7em;
+}
+.ui-widget input, .ui-widget select, .ui-widget textarea {
+  width: 150px;
+}
+.ui-dialog .ui-dialog-title {
+  width: auto;
+  margin-right: 1em;
 }
 .ui-dialog .ui-dialog-titlebar-close,
-.ui-dialog .ui-dialog-titlebar-reload{
-    height: 20px;
-    margin: 0;
-    padding: 1px;
-    width: 21px;
-    float: right; 
-    position: relative;    
+.ui-dialog .ui-dialog-titlebar-reload,
+.ui-dialog .ui-dialog-titlebar-maximize,
+.ui-dialog .ui-dialog-titlebar-minimize{
+  height: 20px;
+  margin: 0;
+  padding: 1px;
+  width: 21px;
+  float: right; 
+  position: relative;    
+}
+.ui-widget .ui-widget{
+  font-size: 0.75em;
+}
+.ui-widget-content{
+  background: none transparent;
 }

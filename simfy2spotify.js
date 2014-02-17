@@ -364,6 +364,7 @@ javascript:
           var tracks = $('.simfy-playlist > tbody .track-link');
           var num_tracks = tracks.length;
           
+          $('textarea.spotify-playlist').val('');
           $.each(tracks, function(nr,track){
             buildPlaylist(track);
           });

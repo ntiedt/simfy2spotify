@@ -68,7 +68,8 @@ javascript:
           tooMuch2: ')!',
           errorNoSpotifyLinks: 'Error! No spotify links could be found! Please verify your inputs and recheck!',
           errorNotAllSpotifyLinks1: 'Warning! Could not extract all(',
-          errorNotAllSpotifyLinks2: ') spotify link from all('+num_rows+') rows!',
+          errorNotAllSpotifyLinks2: ') spotify link from all(',
+          errorNotAllSpotifyLinks3: ') rows!',
           copyC: 'After closing this message press CTRL + C to copy your playlist!'
         }
         
@@ -209,13 +210,13 @@ javascript:
               buildSpotifyLinks(resultswithoutlength[resultkey2],cur_row.find('.spotify'));
             // Too much results with corresponding lang
             }else{
-              cur_a.html(ll.noResultFoundButWithOtherLength1+num_langresults+ll.noResultFoundButWithOtherLength2).removeClass('notchecked notfound toomuch found').addClass('toomuch');
+              cur_a.html(ll.noResultFoundButWithOtherLength1+(num_langresults+1)+ll.noResultFoundButWithOtherLength2).removeClass('notchecked notfound toomuch found').addClass('toomuch');
               buildAlbums(resultswithoutlength,cur_row,-1);
             }
           // Too much results with corresponding length
           }else if(num_lengthresults>1){
-            cur_a.text(ll.tooMuch1+num_lengthresults+ll.tooMuch2).removeClass('notchecked notfound toomuch found').addClass('toomuch');
-            buildAlbums(resultswithoutlength,cur_row,-1);
+            cur_a.text(ll.tooMuch1+(num_lengthresults+1)+ll.tooMuch2).removeClass('notchecked notfound toomuch found').addClass('toomuch');
+            buildAlbums(results,cur_row,-1);
             return;
           // Single result with corresponding length
           }else{
@@ -372,7 +373,7 @@ javascript:
             return;
           }else{
             if(num_tracks<num_rows){
-              alert(ll.errorNotAllSpotifyLinks1+num_tracks+ll.errorNotAllSpotifyLinks2);
+              alert(ll.errorNotAllSpotifyLinks1+num_tracks+ll.errorNotAllSpotifyLinks2+num_rows+ll.errorNotAllSpotifyLinks3);
             }
             alert(ll.copyC);
           }

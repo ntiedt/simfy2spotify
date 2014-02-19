@@ -46,26 +46,43 @@ javascript:
         // Get language for territory restriction
         var lang = navigator.language.slice(0,2).toUpperCase();
         var ll = {
+          tBarHomeUrl: 'http://ntiedt.github.io/simfy2spotify/',
+          tBarTitle: 'simfy2spotify (1.2.2)',
+          tBarBtClose: 'Close',
+          tBarBtMaximize: 'Maximize',
+          tBarBtMaximizeText: '&#9723;',
+          tBarBtMinimize: 'Minimize',
+          tBarBtMinimizeText: '_',
+          tBarBtReload: 'Reload',
+          tBarBtClose: 'Maximize',
+          tBarBtClose: 'Maximize',
+          tBarBtClose: 'Maximize',
+          tBarBtClose: 'Maximize',
+          tBarBtClose: 'Maximize',
+          tBarBtClose: 'Maximize',
+          
           tableHeader1: 'Playlist:',
           tableHeader2: 'Album:',
           tableHeader3: 'Artist-Name:',
           tableHeader4: 'Track-Title:',
           tableHeader5: 'Length:',
           tableHeader6: 'State:',
-          tableHeader7: 'Results:',
+          tableHeader7: 'Results: (Sorted by Popularity)',
           tableHeader8: 'Length:',
           tableHeader9: 'Spotify-Links:',
+          btCheck: 'Check',
           btCheckAll: 'Check All',
           btClose: 'simfy2spotify closes and u must reload the page if you want to reuse it!',
           buildPlaylist: 'Build playlist',
           select1: 'Please select!',
-          noResultFound: 'No result found!',
+          noResultFound: 'No result found! Recheck track-title only?',
           found: 'Found',
           foundLength: 'Found with different length',
-          noResultFoundButWithOtherLength1: 'No result found with specified length!<br/>Too much results(',
-          noResultFoundButWithOtherLength2: ') with different length found!',
-          tooMuch1: 'Too much results with same length(',
-          tooMuch2: ')!',
+          noResultFoundButWithOtherLength1: 'Found: Same length:',
+          noResultFoundButWithOtherLength2: ' Other length:',
+          noResultFoundButWithOtherLength3: ' First selected!',
+          tooMuch1: 'Found: Same length:',
+          tooMuch2: ' First selected!',
           errorNoSpotifyLinks: 'Error! No spotify links could be found! Please verify your inputs and recheck!',
           errorNotAllSpotifyLinks1: 'Warning! Could not extract all(',
           errorNotAllSpotifyLinks2: ') spotify link from all(',
@@ -77,10 +94,10 @@ javascript:
          * Extract simfy playlist and build table with buttons
          */
         function extractSimfy() {
-          var titlebar = '<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-id-1" class="ui-dialog-title"><a href="http://ntiedt.github.io/simfy2spotify/" target="_blank" class="simfy2spotify-home">simfy2spotify (1.2.2)</a></span><div class=""><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-close"></span><span class="ui-button-text">close</span></button><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-dialog-titlebar-maximize" role="button" aria-disabled="false" title="maximize"><span class="ui-button-text">&#9723;</span></button><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-dialog-titlebar-minimize" role="button" aria-disabled="false" title="minimize"><span class="ui-button-text">_</span></button><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-reload" role="button" aria-disabled="false" title="reload"><span class="ui-button-icon-primary ui-icon ui-icon-refresh"></span><span class="ui-button-text">reload</span></button></div></div>';
+          var titlebar = '<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-id-1" class="ui-dialog-title"><a href="'+ll.tBarHomeUrl+'" target="_blank" class="simfy2spotify-home">'+ll.tBarTitle+'</a><span class="title-playlist"></span></span><div class=""><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" role="button" aria-disabled="false" title="'+ll.tBarBtClose+'"><span class="ui-button-icon-primary ui-icon ui-icon-close"></span><span class="ui-button-text">'+ll.tBarBtClose+'</span></button><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-dialog-titlebar-maximize" role="button" aria-disabled="false" title="'+ll.tBarBtMaximize+'"><span class="ui-button-text">'+ll.tBarBtMaximizeText+'</span></button><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-dialog-titlebar-minimize" role="button" aria-disabled="false" title="'+ll.tBarBtMinimize+'"><span class="ui-button-text">'+ll.tBarBtMinimizeText+'</span></button><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-reload" role="button" aria-disabled="false" title="'+ll.tBarBtReload+'"><span class="ui-button-icon-primary ui-icon ui-icon-refresh"></span><span class="ui-button-text">'+ll.tBarBtReload+'</span></button></div></div>';
           var simfyPlaylistOut = '<table class="simfy-playlist ui-widget ui-widget-content"><thead><tr class="ui-widget-header"><th>'+ll.tableHeader1+'</th><th>'+ll.tableHeader2+'</th><th>'+ll.tableHeader3+'</th><th>'+ll.tableHeader4+'</th><th>'+ll.tableHeader5+'</th><th>'+ll.tableHeader6+'</th><th>'+ll.tableHeader7+'</th><th>'+ll.tableHeader8+'</th></tr></thead><tbody>';
           simfyPlaylistOut += '<tfoot><tr class="all"><td class="playlist_title"></td><td class="album"></td><td class="artist_name"></td><td class="track_title"></td><td class="length"></td><td><a href="" class="spot-tracks notchecked">'+ll.btCheckAll+'</a><a href="" class="build-playlist notchecked">'+ll.buildPlaylist+'</a></td><td class="results"></td><td class="spotify"></td></tr></tfoot>';
-          playlist_title = $('h2.playlist_title').text();
+          playlist_title = $('h2.playlist_title').text();   
           if(playlist_title.lastIndexOf(' - ')!=-1){
             album = playlist_title.slice(playlist_title.lastIndexOf(' - ')+3);
           }else{
@@ -90,7 +107,7 @@ javascript:
             artist_name = $('.artist_name a', this).attr('title');
             track_title = $('.track_title_and_version_title .title', this).attr('title');
             length = $('.length', this).text();
-            simfyPlaylistOut += '<tr id="row_'+nr+'"><td class="playlist_title"><input value="'+playlist_title+'" /></td><td class="album"><input value="'+album+'" /></td><td class="artist_name"><input value="'+artist_name+'" /></td><td class="track_title"><input value="'+track_title+'" /></td><td class="length"><input value="'+length+'" /></td><td><a href="" class="spot-track notchecked" data-row="row_'+nr+'">Check</a></td><td class="results"></td><td class="spotify"></td></tr>';
+            simfyPlaylistOut += '<tr id="row_'+nr+'"><td class="playlist_title"><input value="'+playlist_title+'" /></td><td class="album"><input value="'+album+'" /></td><td class="artist_name"><input value="'+artist_name+'" /></td><td class="track_title"><input value="'+track_title+'" /></td><td class="length"><input value="'+length+'" /></td><td><a href="" class="spot-track notchecked" data-row="row_'+nr+'">'+ll.btCheck+'</a></td><td class="results"></td><td class="spotify"></td></tr>';
           });
           simfyPlaylistOut += '</tbody></table>';
           var simfyResult = $('<div>')
@@ -101,18 +118,28 @@ javascript:
           }else{
             simfyResult.html('.simfy-result');
           }
+          $('.title-playlist').html(' [Simfy Playlist: '+playlist_title+']');
+          
+//           $('.simfy-result').append('<table class="dbg"></table>');
         }
+        
         
         /**
          * Build spotify search url for json request
          * @param {Object} cur_row - current row
+         * @param {Boolean} recheck - but only track title
          * @return {string} url
          */
-        function getUrl(cur_row) {
-          var album = (cur_row.find('.album input').length>0)? cur_row.find('.album input').val().replace(/\s/gi,'+').replace(/:/g,'+') : cur_row.find('.album select').val().replace(/\s/gi,'+').replace(/:/g, '+');
-          var artist_name = cur_row.find('.artist_name input').val().replace(/\s/gi,'+');
+        function getUrl(cur_row,recheck) {
+          var url = 'http://ws.spotify.com/search/1/track.json?q=track:';
           var track_title = cur_row.find('.track_title input').val().replace(/\s/gi,'+');
-          url = (album=='')?'http://ws.spotify.com/search/1/track.json?q=track:'+track_title+'+AND+artist:'+artist_name:'http://ws.spotify.com/search/1/track.json?q=track:'+track_title+'+AND+artist:'+artist_name+'+AND+album:'+album;
+          if(recheck){
+            url = url+track_title;
+          }else{
+            var album = (cur_row.find('.album input').length>0)? cur_row.find('.album input').val().replace(/\s/gi,'+').replace(/:/g,'+') : cur_row.find('.album select').val().replace(/\s/gi,'+').replace(/:/g, '+');
+            var artist_name = cur_row.find('.artist_name input').val().replace(/\s/gi,'+');
+            url = (album=='')?url+track_title+'+AND+artist:'+artist_name:url+track_title+'+AND+artist:'+artist_name+'+AND+album:'+album;
+          }
           return url;
         }
         
@@ -173,7 +200,7 @@ javascript:
           var num_langresults = -1;
           var num_lengthresults = -1;
           var resultkey = -1;
-          var resultkey2 = -1;
+          var resultkeywithoutlength = -1;
           var results = [];
           var resultswithoutlength = [];
           var length = (cur_row.find('.results select').length>0) ? cur_row.find('.results select option:selected').data('length') : getSeconds(cur_row.find('.length input').val());
@@ -185,15 +212,15 @@ javascript:
             if(track.album.availability.territories.indexOf(lang)!=-1){
               num_langresults++;
               resultswithoutlength.push(track);
+              if(resultkeywithoutlength==-1) {
+                resultkeywithoutlength = num_langresults;
+              }
               if(Math.round(track.length)==length){
                 num_lengthresults++;
-                if(resultkey==-1) {
-                  resultkey = key;
-                }
-                if(resultkey2==-1) {
-                  resultkey2 = num_langresults;
-                }
                 results.push(track);
+                if(resultkey==-1) {
+                  resultkey = num_lengthresults;
+                }
               }
             }
           });
@@ -201,28 +228,28 @@ javascript:
           if(num_lengthresults==-1){
             // No results with corresponding lang -> No result
             if(num_langresults==-1){
-              cur_a.text(ll.noResultFound).removeClass('notchecked notfound toomuch found').addClass('notfound');
+              cur_a.text(ll.noResultFound).removeClass('notchecked notfound toomuch found').addClass('notfound recheck');
               return;
             // Single result with corresponding lang
-            }else if(num_langresults==1){
-              cur_a.text(ll.foundLength).removeClass('notchecked notfound toomuch found').addClass('found');
-              buildAlbums(resultswithoutlength,cur_row,resultkey2);
-              buildSpotifyLinks(resultswithoutlength[resultkey2],cur_row.find('.spotify'));
+            }else if(num_langresults==0){
+              cur_a.text(ll.foundLength).removeClass('notchecked notfound toomuch found recheck').addClass('found');
+              buildSpotifyLinks(resultswithoutlength[resultkeywithoutlength],cur_row.find('.spotify'));
             // Too much results with corresponding lang
             }else{
-              cur_a.html(ll.noResultFoundButWithOtherLength1+(num_langresults+1)+ll.noResultFoundButWithOtherLength2).removeClass('notchecked notfound toomuch found').addClass('toomuch');
-              buildAlbums(resultswithoutlength,cur_row,-1);
+              cur_a.html(ll.noResultFoundButWithOtherLength1+(num_lengthresults+1)+ll.noResultFoundButWithOtherLength2+(num_langresults+1)+ll.noResultFoundButWithOtherLength3).removeClass('notchecked notfound toomuch found recheck').addClass('toomuch');
+//               cur_a.html(ll.noResultFoundButWithOtherLength1+(num_langresults+1)+ll.noResultFoundButWithOtherLength2).removeClass('notchecked notfound toomuch found').addClass('toomuch');
+              buildAlbums(resultswithoutlength,cur_row,resultkeywithoutlength);
+              buildSpotifyLinks(resultswithoutlength[resultkeywithoutlength],cur_row.find('.spotify'));
             }
           // Too much results with corresponding length
-          }else if(num_lengthresults>1){
-            cur_a.text(ll.tooMuch1+(num_lengthresults+1)+ll.tooMuch2).removeClass('notchecked notfound toomuch found').addClass('toomuch');
-            buildAlbums(results,cur_row,-1);
-            return;
+          }else if(num_lengthresults>0){
+            cur_a.text(ll.tooMuch1+(num_lengthresults+1)+ll.tooMuch2).removeClass('notchecked notfound toomuch found recheck').addClass('toomuch');
+            buildAlbums(results,cur_row,resultkeywithoutlength);
+            buildSpotifyLinks(resultswithoutlength[resultkeywithoutlength],cur_row.find('.spotify'));
           // Single result with corresponding length
           }else{
-            cur_a.text(ll.found).removeClass('notchecked notfound toomuch found').addClass('found');
-            buildAlbums(resultswithoutlength,cur_row,resultkey2);
-            buildSpotifyLinks(resultswithoutlength[resultkey2],cur_row.find('.spotify'));
+            cur_a.text(ll.found).removeClass('notchecked notfound toomuch found recheck').addClass('found');
+            buildSpotifyLinks(results[resultkey],cur_row.find('.spotify'));
           }
         }
         
@@ -330,7 +357,7 @@ javascript:
           var cur_a = $(this);
           var cur_row = $('#'+$(this).data('row'));
           
-          $.getJSON( getUrl($(cur_row)), function( json ) {
+          $.getJSON( getUrl($(cur_row),cur_a.is('.recheck')), function( json ) {
             extractResults(json,cur_a);
           });
           return false;

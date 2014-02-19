@@ -93,3 +93,6 @@ div.simfy-result table td a.build-playlist {
 .ui-widget-content{
   background: none transparent;
 }
+.ui-widget .title-playlist{
+  font-weight: normal;
+}

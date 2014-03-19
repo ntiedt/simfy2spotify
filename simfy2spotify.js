@@ -47,7 +47,7 @@ javascript:
         var lang = navigator.language.slice(0,2).toUpperCase();
         var ll = {
           tBarHomeUrl: 'http://ntiedt.github.io/simfy2spotify/',
-          tBarTitle: 'simfy2spotify (1.2.2)',
+          tBarTitle: 'simfy2spotify (1.2.4)',
           tBarBtClose: 'Close',
           tBarBtMaximize: 'Maximize',
           tBarBtMaximizeText: '&#9723;',
@@ -132,12 +132,12 @@ javascript:
          */
         function getUrl(cur_row,recheck) {
           var url = 'http://ws.spotify.com/search/1/track.json?q=track:';
-          var track_title = cur_row.find('.track_title input').val().replace(/\s/gi,'+');
+          var track_title = encodeURIComponent(cur_row.find('.track_title input').val()).replace(/\s/gi,'+');
           if(recheck){
             url = url+track_title;
           }else{
-            var album = (cur_row.find('.album input').length>0)? cur_row.find('.album input').val().replace(/\s/gi,'+').replace(/:/g,'+') : cur_row.find('.album select').val().replace(/\s/gi,'+').replace(/:/g, '+');
-            var artist_name = cur_row.find('.artist_name input').val().replace(/\s/gi,'+');
+            var album = (cur_row.find('.album input').length>0)? encodeURIComponent(cur_row.find('.album input').val()).replace(/\s/gi,'+').replace(/:/g,'+') : encodeURIComponent(cur_row.find('.album select').val()).replace(/\s/gi,'+').replace(/:/g, '+');
+            var artist_name = encodeURIComponent(cur_row.find('.artist_name input').val().replace(/\s/gi,'+'));
             url = (album=='')?url+track_title+'+AND+artist:'+artist_name:url+track_title+'+AND+artist:'+artist_name+'+AND+album:'+album;
           }
           return url;
